@@ -1,0 +1,15 @@
+{
+  "name": "linker",
+  "version": "1.0.0",
+  "description": "A platform to manage your urls",
+  "main": "index.js",
+  "keywords": [
+    "linker",
+    "manage-link",
+    "links",
+    "link-management",
+    "cms"
+  ],
+  "author": "Rahulbaran",
+  "license": "MIT"
+}

@@ -1,0 +1,39 @@
+$red-color: red;
+$white-color: white;
+$black-color: black;
+$green-color: green;
+$blue-color: blue;
+$yellow-color: yellow;
+
+$font-weights: (
+  "regular": 400,
+  "medium": 500,
+  "semi": 600,
+  "bold": 700
+);
+$base-font-size: 1rem;
+$base-padding: 0.5rem;
+$base-margin: 0.5rem;
+$base-border-radius: 20px;
+$base-lh: 1.35;
+
+html {
+  font-size: 100%;
+  box-sizing: border-box;
+  min-block-size: 100vh;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+:root {
+}
+
+body {
+  min-block-size: 100vh;
+}
