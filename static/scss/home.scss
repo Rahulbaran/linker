@@ -1,0 +1,51 @@
+@import "partials/Variables.scss";
+@import "partials/Mixins.scss";
+
+.main {
+  &--container {
+    padding-inline: $base-padding * 4;
+    @include flex(flex-start, flex-start, $dir: column, $gap: $base-margin * 2);
+  }
+
+  &__heading {
+    color: adjust-hue($yellow-color, 25deg);
+    font-size: $base-font-size * 2.5;
+    letter-spacing: 0.75px;
+    font-family: var(--font-stack-abeezee);
+    background-image: linear-gradient(
+      to top right,
+      adjust-hue($yellow-color, 25deg),
+      lighten(adjust-hue($yellow-color, 25deg), 20%)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    & ~ [href="/signup"] {
+      display: inline-block;
+      background-color: adjust-hue($yellow-color, 30deg);
+      padding: {
+        block: $base-padding * 1.5;
+        inline: $base-padding * 3;
+      }
+      border-radius: $base-border-radius * 0.25;
+      text-decoration: none;
+    }
+  }
+
+  &__subheading {
+    font-weight: map-get($font-weights, regular);
+    color: lighten(desaturate(adjust-hue($yellow-color, 25deg), 30%), 35%);
+    line-height: $base-lh * 0.9;
+    font-size: $base-font-size * 1.1;
+    word-spacing: 2px;
+  }
+}
+
+/* --------------------------------
+* MEDIA QUERIES
+-------------------------------- */
+@media all and (min-width: 769px) {
+  .main--container {
+    align-items: center;
+  }
+}

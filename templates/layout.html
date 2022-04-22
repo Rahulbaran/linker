@@ -9,19 +9,40 @@
     <meta name="author" content="Rahulbaran">
     <meta name="contact" content="rahulkumar109422@gmail.com">
 
-    <title>{{title}}</title>
+    <title>{{title}} || Manage Your Links</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=ABeeZee&family=Lato&family=Lora:wght@500&family=Poppins&display=swap" rel="stylesheet"> 
-
+    <!-- *---------------------------- CUSTOM STYLESHEET -------------------------* -->
     <link rel="stylesheet" href="{{url_for('static', filename='css/layout.css')}}">
 
-    {% block stylesheet %}
+    <!-- *-------------------- JINJA BLOCK FOR CUSTOM STYLESHEETS -------------------* -->
+    {% block stylesheets %}
     {% endblock %}
 </head>
 <body>
+    <header class="header">
+        <a href="{{url_for('home')}}" class="logo" title='Logo'>Linker</a>
 
+        <nav class="navigation" aria-labelledby="primary navigation">
+            <ul class="navigation__bar">
+                <li>
+                    <a href="{{url_for('home')}}" class="navigation__link {{'navigation__link--active' if active_page=='home' else ''}}" title="Home Tab">Home</a>
+                </li>
+                <li>
+                    <a href="{{url_for('signup')}}" class="navigation__link {{'navigation__link--active' if active_page=='signup' else ''}}" title="Signup Tab">Signup</a>
+                </li>
+                <li>
+                    <a href="{{url_for('login')}}" class="navigation__link {{'navigation__link--active' if active_page=='login' else ''}}" title="Login Tab">Login</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
+    <!-- *--------------------------- JINJA BLOCK FOR BODY ------------------------* -->
+    {% block body %}
+    {% endblock %}
+
+    <!-- *--------------------- JINJA BLOCK FOR CUSTOM SCRIPTS --------------------* -->
+    {% block scripts %}
+    {% endblock %}
 </body>
 </html>

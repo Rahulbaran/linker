@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% set active_page='home' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
+{% endblock %}
+
+{% block body %}
+    <main class="main--container">
+        <h1 class="main__heading">Manage Your Links</h1>
+
+        <div>
+            <h5 class="main__subheading">Linker is a platform to manage your links</h5>  
+            <h5 class="main__subheading">of Github, Codepen, Linkedin etc.</h5>
+        </div>
+
+        <a href="{{url_for('signup')}}" title="Registration Link">Register Now</a>
+    </main>
+{% endblock %}

@@ -1,39 +1,125 @@
-$red-color: red;
-$white-color: white;
-$black-color: black;
-$green-color: green;
-$blue-color: blue;
-$yellow-color: yellow;
-
-$font-weights: (
-  "regular": 400,
-  "medium": 500,
-  "semi": 600,
-  "bold": 700
-);
-$base-font-size: 1rem;
-$base-padding: 0.5rem;
-$base-margin: 0.5rem;
-$base-border-radius: 20px;
-$base-lh: 1.35;
-
-html {
-  font-size: 100%;
-  box-sizing: border-box;
-  min-block-size: 100vh;
-}
-
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-}
-
-:root {
-}
+@import "partials/Variables.scss";
+@import "partials/Mixins.scss";
+@import "partials/Base.scss";
 
 body {
   min-block-size: 100vh;
+  font: {
+    family: var(--font-stack-lato);
+    size: $base-font-size;
+    weight: map-get($font-weights, regular);
+  }
+  line-height: $base-lh;
+  background-image: conic-gradient(
+    from -20deg at 50% 50%,
+    darken(desaturate($blue-color, 30%), 44%) 0 60deg,
+    darken(desaturate($blue-color, 20%), 43%) 60deg 240deg,
+    darken(desaturate($blue-color, 30%), 44%) 240deg 360deg
+  );
+  background-attachment: fixed;
+  position: relative;
+  @include flex(center, center);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: $base-lh * 0.75;
+}
+
+/* -------------------------------
+* HEADER STYLING
+-------------------------------- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  inline-size: 100%;
+  background-image: linear-gradient(
+    45deg,
+    darken($blue-color, 37%),
+    (darken(desaturate($blue-color, 30%), 30%))
+  );
+  padding: {
+    block: $base-padding * 1.5;
+    inline: $base-padding * 2;
+  }
+  box-shadow: 0 5px 15px transparentize($black-color, 0.7);
+  @include flex($align: center);
+
+  .logo {
+    text-decoration: none;
+    font: {
+      size: $base-font-size * 2.25;
+      family: var(--font-stack-lora);
+      weight: map-get($font-weights, bold);
+      style: italic;
+    }
+    color: lighten($yellow-color, 30%);
+    text-shadow: 5px 5px 3px transparentize($black-color, 0.65);
+    letter-spacing: 0.75px;
+    line-height: $base-lh * 0.8;
+  }
+
+  .navigation {
+    margin-inline-start: auto;
+
+    &__bar {
+      @include flex($align: flex-start, $gap: $base-margin * 3);
+      list-style-type: none;
+    }
+
+    &__link {
+      display: inline-block;
+      padding: $base-padding;
+      color: lighten(adjust-hue($yellow-color, 30deg), 40%);
+      letter-spacing: 1px;
+      text-decoration: none;
+      text-transform: uppercase;
+
+      &:last-of-type {
+        padding-inline-end: unset;
+      }
+
+      &:hover,
+      &--active {
+        text-decoration: underline 1px wavy currentColor;
+        text-underline-offset: 3px;
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+/* -------------------------------
+*  MEDIA QUERIES 
+---------------------------------*/
+@supports (scroll-behavior: smooth) {
+  @media (prefers-reduced-motion) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .header .navigation__bar {
+    gap: $base-margin * 1.5;
+  }
+}
+
+@each $size, $bp in $fontSizesAtBp {
+  @media all and (min-width: $bp) {
+    html {
+      font-size: #{$size};
+    }
+  }
 }

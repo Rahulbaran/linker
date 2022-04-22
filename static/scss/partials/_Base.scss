@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=ABeeZee&family=Lato&family=Lora:wght@500;700&family=Poppins&display=swap");
+
+html {
+  font-size: 80%;
+  box-sizing: border-box;
+  min-block-size: 100vh;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+:root {
+  --font-stack-abeezee: "AbeeZee", sans-serif;
+  --font-stack-lato: "Lato", sans-serif;
+  --font-stack-lora: "Lora", sans-serif;
+  --font-stack-poppins: "Poppins", sans-serif;
+}
