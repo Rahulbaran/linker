@@ -10,13 +10,20 @@ body {
     weight: map-get($font-weights, regular);
   }
   line-height: $base-lh;
-  background-image: conic-gradient(
-    from -20deg at 50% 50%,
-    darken(desaturate($blue-color, 30%), 44%) 0 60deg,
-    darken(desaturate($blue-color, 20%), 43%) 60deg 240deg,
-    darken(desaturate($blue-color, 30%), 44%) 240deg 360deg
-  );
+  background-image: repeating-linear-gradient(
+      20deg,
+      transparentize(desaturate($blue-color, 40%), 0.9) 0 100px,
+      transparentize(desaturate($blue-color, 40%), 0.9) 100px 200px
+    ),
+    conic-gradient(
+      from -20deg at 50% 50%,
+      darken(desaturate($blue-color, 30%), 44%) 0 60deg,
+      darken(desaturate($blue-color, 20%), 43%) 60deg 240deg,
+      darken(desaturate($blue-color, 30%), 44%) 240deg 360deg
+    );
+
   background-attachment: fixed;
+  background-color: darken(desaturate($blue-color, 30%), 44%);
   position: relative;
   @include flex(center, center);
 }
@@ -28,6 +35,37 @@ h4,
 h5,
 h6 {
   line-height: $base-lh * 0.75;
+}
+
+.btn {
+  display: inline-block;
+  background-color: adjust-hue($yellow-color, 30deg);
+  border-radius: $base-border-radius * 0.25;
+  text-decoration: none;
+  border: none;
+  color: $black-color;
+  font-weight: map-get($font-weights, bold);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: $base-lh * 0.75;
+  padding: {
+    block: $base-padding * 1.7;
+    inline: $base-padding * 3;
+  }
+  transition: transform 200ms ease-in, box-shadow 200ms ease-in;
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 10px transparentize($black-color, 0.1);
+    transition: transform 300ms ease-out, box-shadow 300ms ease-out;
+  }
+
+  &:active {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 7px transparentize($black-color, 0.2);
+    transition: transform 150ms ease-in, box-shadow 150ms ease-out;
+  }
 }
 
 /* -------------------------------
@@ -43,11 +81,12 @@ h6 {
     darken($blue-color, 37%),
     (darken(desaturate($blue-color, 30%), 30%))
   );
+  background-color: darken($blue-color, 37%);
   padding: {
     block: $base-padding * 1.5;
     inline: $base-padding * 2;
   }
-  box-shadow: 0 5px 15px transparentize($black-color, 0.7);
+  box-shadow: 0 3px 3px transparentize($black-color, 0.9);
   @include flex($align: center);
 
   .logo {
@@ -62,6 +101,10 @@ h6 {
     text-shadow: 5px 5px 3px transparentize($black-color, 0.65);
     letter-spacing: 0.75px;
     line-height: $base-lh * 0.8;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   .navigation {
@@ -110,9 +153,13 @@ h6 {
   }
 }
 
-@media all and (max-width: 480px) {
-  .header .navigation__bar {
-    gap: $base-margin * 1.5;
+@media all and (max-width: 769px) {
+  .header {
+    padding-inline: $base-padding;
+
+    .navigation__bar {
+      gap: $base-margin;
+    }
   }
 }
 

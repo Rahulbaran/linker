@@ -1,0 +1,82 @@
+@import "partials/Variables.scss";
+@import "partials/Mixins.scss";
+
+.form {
+  &--container {
+    inline-size: 480px;
+    max-inline-size: 90%;
+    margin-inline: auto;
+    background-image: repeating-conic-gradient(
+      from -45deg at 50% 50%,
+      darken(desaturate($blue-color, 40%), 34%) 0 30deg,
+      darken(desaturate($blue-color, 45%), 35%) 30deg 60deg
+    );
+    padding: $base-padding * 2 $base-padding * 3;
+    border-radius: $base-border-radius * 0.35;
+    box-shadow: 0 0 5px 1px transparentize($black-color, 0.85);
+  }
+
+  > *:not(:last-child) {
+    margin-block-end: $base-margin * 1.1;
+  }
+
+  &__heading {
+    color: adjust-hue($yellow-color, 25deg);
+    margin-block-end: $base-margin * 2;
+    font-size: $base-font-size * 1.6;
+    background: linear-gradient(currentColor, currentColor) bottom 0 left 0/5rem
+      3px no-repeat;
+    padding-block-end: $base-padding * 0.65;
+    letter-spacing: 0.75px;
+    word-spacing: 3px;
+    font-family: var(--font-stack-abeezee);
+  }
+
+  &__group {
+    @include flex(flex-start, $dir: column);
+
+    label {
+      color: lighten(adjust-hue($yellow-color, 30deg), 40%);
+      font-size: $base-font-size * 1.1;
+      letter-spacing: 0.5px;
+      font-family: var(--font-stack-abeezee);
+      line-height: $base-lh * 0.85;
+    }
+
+    input {
+      color: lighten(adjust-hue($yellow-color, 30deg), 30%);
+      padding: $base-padding * 1.25 $base-padding;
+      font-size: initial;
+      background-color: transparent;
+      border: 1px solid currentColor;
+      border-radius: $base-border-radius * 0.25;
+      text-overflow: ellipsis;
+      letter-spacing: 0.5px;
+
+      &:focus {
+        border-color: lighten(adjust-hue($yellow-color, 30deg), 15%);
+        outline: 1px solid lighten(adjust-hue($yellow-color, 30deg), 15%);
+      }
+    }
+  }
+
+  [type="submit"] {
+    font-family: var(--font-stack-lato);
+    font-size: inherit;
+    margin-block-start: $base-margin;
+  }
+}
+
+/* -------------------------------
+* MEDIA QUERIES
+-------------------------------- */
+@media all and (min-width: 481px) {
+  body {
+    align-items: flex-start;
+    padding-block-start: $base-padding * 12;
+  }
+
+  .form > *:not(:last-child) {
+    margin-block-end: $base-margin * 0.7;
+  }
+}

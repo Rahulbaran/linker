@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from config import DevConfig, ProdConfig
+from form import SignUpForm, LoginForm
 
 app = Flask(__name__)
 if os.getenv("FLASK_ENV") == "development":
@@ -22,14 +23,28 @@ def home():
     return render_template("home.html", title="HOME")
 
 
+@app.route("/contact")
+def contact():
+    return render_template("contact.html", title="CONTACT")
+
+
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
-    return render_template("signup.html", title="SIGNUP")
+    form = SignUpForm()
+    return render_template("signup.html", title="SIGNUP", form=form)
 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    return render_template("login.html", title="LOGIN")
+    form = LoginForm()
+    return render_template("login.html", title="LOGIN", form=form)
+
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("home"))
 
 
 # RUNNING APP IN PYTHONIC WAY

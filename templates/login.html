@@ -5,4 +5,42 @@
 {% endblock %}
 
 {% block body %}
+    <main class="form--container">
+        <h3 class="form__heading">Login Form</h3>
+
+        <form class="form" autocomplete="off" method="post" spellcheck="false">
+            {{form.hidden_tag()}}
+
+            <div class="form__group">
+                {{form.username.label}}
+                {% if form.username.errors %}
+                {{form.username(class="input__error")}}
+                {% for error in form.username.errors %}
+                <span class="error__msg">{{error}}</span>
+                {% endfor %}
+                {% else %}
+                {{form.username(placeholder="enter your username")}}
+                {% endif %}
+            </div>
+
+            <div class="form__group">
+                {{form.password.label}}
+                {% if form.password.errors %}
+                {{form.password(class="input__error")}}
+                {% for error in form.password.errors %}
+                <span class="error__msg">{{error}}</span>
+                {% endfor %}
+                {% else %}
+                {{form.password(placeholder="enter your password")}}
+                {% endif %}
+            </div>
+
+            <div class="form__remember--group">
+                {{form.remember}}
+                {{form.remember.label}}
+            </div>
+
+            {{form.submit(class="btn")}}
+        </form>
+    </main>
 {% endblock %}
