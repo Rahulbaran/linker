@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% set active_page='contact' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/contact.css')}}">
+{% endblock %}
+
+{% block body %}
+    <main class="contact--container">
+        <h1 class="contact__page--heading">Contact Us</h1>
+
+        <div class="contact__info">
+            <a href="tel:+911234566743" class="contact__number" title="Call Us">
+                <box-icon name='phone' color="white"></box-icon>
+                <span>+911242344324</span>
+            </a>
+
+            <a href="mailto:rahulkumar109422@gmail.com" class="contact__email" title="Mail Us">
+                <box-icon name='envelope' color="white"></box-icon>
+                <span>rahulkumar109422@gmail.com</span>
+            </a>
+        </div>
+    </main>
+{% endblock %}

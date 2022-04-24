@@ -14,7 +14,7 @@
             <div class="form__group">
                 {{form.fullname.label}}
                 {% if form.fullname.errors %}
-                {{form.fullname(class="input__error")}}
+                {{form.fullname(id="input__error")}}
                 {% for error in form.fullname.errors %}
                 <span class="error__msg">{{error}}</span>
                 {% endfor %}
@@ -26,7 +26,7 @@
             <div class="form__group">
                 {{form.username.label}}
                 {% if form.username.errors %}
-                {{form.username(class="input__error")}}
+                {{form.username(id="input__error")}}
                 {% for error in form.username.errors %}
                 <span class="error__msg">{{error}}</span>
                 {% endfor %}
@@ -38,7 +38,7 @@
             <div class="form__group">
                 {{form.email.label}}
                 {% if form.email.errors %}
-                {{form.email(class="input__error")}}
+                {{form.email(id="input__error")}}
                 {% for error in form.email.errors %}
                 <span class="error__msg">{{error}}</span>
                 {% endfor %}
@@ -50,7 +50,7 @@
             <div class="form__group">
                 {{form.password.label}}
                 {% if form.password.errors %}
-                {{form.password(class="input__error")}}
+                {{form.password(id="input__error")}}
                 {% for error in form.password.errors %}
                 <span class="error__msg">{{error}}</span>
                 {% endfor %}
@@ -62,5 +62,12 @@
             {{form.recaptcha}}
             {{form.submit(class="btn")}}
         </form>
+
+        <div class="login__link--wrapper">
+            <p>
+                Already have an account?
+                <a href="{{url_for('login')}}">Login</a>
+            </p>
+        </div>
     </main>
 {% endblock %}

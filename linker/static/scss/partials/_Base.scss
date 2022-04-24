@@ -1,0 +1,47 @@
+@import "Variables.scss";
+@import url("https://fonts.googleapis.com/css2?family=ABeeZee&family=Lato:wght@400;700&family=Lora:wght@500;700&display=swap");
+
+html {
+  font-size: 75%;
+  box-sizing: border-box;
+  min-block-size: 100vh;
+  scrollbar-width: thin;
+  scrollbar-color: darken(adjust-hue($yellow-color, 30deg), 10%) $white-color;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+:root {
+  --font-stack-abeezee: "AbeeZee", sans-serif;
+  --font-stack-lato: "Lato", sans-serif;
+  --font-stack-lora: "Lora", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+
+  &-track {
+    background-color: $white-color;
+    box-shadow: 2px 0 2px transparentize($black-color, 0.85) inset;
+  }
+
+  &-thumb {
+    background-color: darken(adjust-hue($yellow-color, 30deg), 10%);
+    border-radius: $base-border-radius * 0.15;
+
+    &:hover {
+      background-color: darken(adjust-hue($yellow-color, 30deg), 15%);
+    }
+
+    &:active {
+      background-color: darken(adjust-hue($yellow-color, 30deg), 25%);
+    }
+  }
+}

@@ -17,6 +17,9 @@
     <!-- *-------------------- JINJA BLOCK FOR CUSTOM STYLESHEETS -------------------* -->
     {% block stylesheets %}
     {% endblock %}
+
+    <!-- *--------------------------- BOX ICONS ---------------------------* -->
+    <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js" defer></script>
 </head>
 <body>
     <header class="header">
@@ -40,12 +43,33 @@
         </nav>
     </header>
 
+
     <!-- *--------------------------- JINJA BLOCK FOR BODY ------------------------* -->
     {% block body %}
     {% endblock %}
 
+
+    <!-- *--------------------------- FLASH MESSAGE ------------------------------*  -->
+    {% with messages=get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+    <div class="msg--container">
+      {% for cat, msg in messages %}
+      <div class="msg__block {{cat}}__msg--block">
+          <span>{{msg}}</span>
+          <button class="msg__hide--btn">&Cross;</button>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+
     <!-- *--------------------- JINJA BLOCK FOR CUSTOM SCRIPTS --------------------* -->
     {% block scripts %}
     {% endblock %}
+
+    <script>
+        
+    </script>
 </body>
 </html>

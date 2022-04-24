@@ -73,6 +73,42 @@
   }
 }
 
+.signup__link--wrapper {
+  margin-block-start: $base-margin * 1.5;
+
+  p {
+    color: lighten(adjust-hue($yellow-color, 30deg), 40%);
+    font-size: $base-font-size * 1.05;
+    letter-spacing: 0.5px;
+  }
+
+  a {
+    font-family: var(--font-stack-abeezee);
+    text-decoration: none;
+    color: adjust-hue($yellow-color, 25deg);
+
+    &:hover {
+      text-decoration: underline 1px wavy currentColor;
+      text-underline-offset: 3px;
+    }
+  }
+}
+
+#input__error {
+  border-color: $red-color;
+  outline-color: $red-color;
+
+  &:hover {
+    outline-color: $red-color;
+  }
+}
+
+.error__msg {
+  color: lighten($red-color, 10%) !important;
+  font-size: $base-font-size * 0.8;
+  letter-spacing: 0.5px;
+}
+
 /* -------------------------------
 * MEDIA QUERIES
 -------------------------------- */

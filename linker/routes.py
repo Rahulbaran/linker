@@ -1,20 +1,8 @@
-import os
-from flask import Flask, render_template, url_for, redirect, abort, flash
-from flask_sqlalchemy import SQLAlchemy
-from flask_bcrypt import Bcrypt
+from flask import render_template, url_for, redirect, abort, flash
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
-from config import DevConfig, ProdConfig
-from form import SignUpForm, LoginForm
-
-app = Flask(__name__)
-if os.getenv("FLASK_ENV") == "development":
-    app.config.from_object(DevConfig)
-elif os.getenv("FLASK_ENV") == "production":
-    app.config.from_object(ProdConfig)
-
-db = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
-# login_manager = LoginManager(app)
+from . import app, db
+from .models import User
+from .form import SignUpForm, LoginForm
 
 # ROUTES
 @app.route("/")
@@ -31,6 +19,17 @@ def contact():
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     form = SignUpForm()
+    if form.validate_on_submit():
+        user = User(
+            fullname=form.fullname.data,
+            username=form.username.data,
+            email=form.email.data,
+            password=User.encrypt_password(form.password.data),
+        )
+        db.session.add(user)
+        db.session.commit()
+        flash("You have been registerd successfully", "info")
+        return redirect(url_for("login"))
     return render_template("signup.html", title="SIGNUP", form=form)
 
 
@@ -45,8 +44,3 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for("home"))
-
-
-# RUNNING APP IN PYTHONIC WAY
-if __name__ == "__main__":
-    app.run(host="localhost", port=5000, debug=True, load_dotenv=True)

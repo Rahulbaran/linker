@@ -1,0 +1,46 @@
+@import "partials/Variables.scss";
+@import "partials/Mixins.scss";
+
+.contact {
+  &--container {
+    inline-size: 420px;
+    max-inline-size: 90%;
+    margin-inline: auto;
+    background-image: repeating-conic-gradient(
+      from -45deg at 50% 50%,
+      darken(desaturate($blue-color, 40%), 34%) 0 30deg,
+      darken(desaturate($blue-color, 45%), 35%) 30deg 60deg
+    );
+    padding: $base-padding * 3;
+    border-radius: $base-border-radius * 0.35;
+    box-shadow: 0 0 5px 1px transparentize($black-color, 0.85);
+  }
+
+  &__page--heading {
+    color: adjust-hue($yellow-color, 25deg);
+    margin-block-end: $base-margin * 4;
+    font-size: $base-font-size * 1.75;
+    background: linear-gradient(currentColor, currentColor) bottom 0 left 0/4.3rem
+      3px no-repeat;
+    padding-block-end: $base-padding * 0.4;
+    letter-spacing: 0.75px;
+    word-spacing: 3px;
+    font-family: var(--font-stack-abeezee);
+  }
+
+  &__info {
+    @include flex($align: flex-start, $dir: column, $gap: $base-margin);
+
+    a {
+      @include flex(center, center, $gap: $base-margin * 1.5);
+      font-size: $base-font-size * 1.15;
+      text-decoration: none;
+      color: lighten(adjust-hue($yellow-color, 30deg), 40%);
+      letter-spacing: 0.75px;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+}

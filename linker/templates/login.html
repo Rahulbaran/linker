@@ -14,7 +14,7 @@
             <div class="form__group">
                 {{form.username.label}}
                 {% if form.username.errors %}
-                {{form.username(class="input__error")}}
+                {{form.username(id="input__error")}}
                 {% for error in form.username.errors %}
                 <span class="error__msg">{{error}}</span>
                 {% endfor %}
@@ -26,7 +26,7 @@
             <div class="form__group">
                 {{form.password.label}}
                 {% if form.password.errors %}
-                {{form.password(class="input__error")}}
+                {{form.password(id="input__error")}}
                 {% for error in form.password.errors %}
                 <span class="error__msg">{{error}}</span>
                 {% endfor %}
@@ -42,5 +42,12 @@
 
             {{form.submit(class="btn")}}
         </form>
+
+        <div class="signup__link--wrapper">
+            <p>
+                Don't have an account?
+                <a href="{{url_for('signup')}}">Create now</a>
+            </p>
+        </div>
     </main>
 {% endblock %}
