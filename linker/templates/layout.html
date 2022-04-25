@@ -27,6 +27,18 @@
 
         <nav class="navigation" aria-labelledby="primary navigation">
             <ul class="navigation__bar">
+
+                {% if current_user.is_authenticated %}
+                <li>
+                    <a href="{{url_for('links')}}" class="navigation__link {{'navigation__link--active' if active_page=='links' else ''}}" title="Links Tab">Links</a>
+                </li>
+                <li>
+                    <a href="{{url_for('account')}}" class="navigation__link {{'navigation__link--active' if active_page=='account' else ''}}" title="Account Tab">Account</a>
+                </li>
+                <li>
+                    <a href="{{url_for('logout')}}" class="navigation__link" title="Logout Tab">Logout</a>
+                </li>
+                {% else %}
                 <li>
                     <a href="{{url_for('home')}}" class="navigation__link {{'navigation__link--active' if active_page=='home' else ''}}" title="Home Tab">Home</a>
                 </li>
@@ -36,6 +48,8 @@
                 <li>
                     <a href="{{url_for('login')}}" class="navigation__link {{'navigation__link--active' if active_page=='login' else ''}}" title="Login Tab">Login</a>
                 </li>
+                {% endif %}
+                
                 <li>
                     <a href="{{url_for('contact')}}" class="navigation__link {{'navigation__link--active' if active_page=='contact' else ''}}" title="Contact Tab">Contact</a>
                 </li>
@@ -56,7 +70,7 @@
       {% for cat, msg in messages %}
       <div class="msg__block {{cat}}__msg--block">
           <span>{{msg}}</span>
-          <button class="msg__hide--btn">&Cross;</button>
+          <button class="msg__hide--btn {{cat}}__msg--hide--btn">&Cross;</button>
       </div>
       {% endfor %}
     </div>
@@ -69,7 +83,12 @@
     {% endblock %}
 
     <script>
-        
+        const $hideBtns = document.querySelectorAll(".msg__hide--btn");
+        $hideBtns?.forEach(hideBtn => {
+            hideBtn.addEventListener("click", () => {
+                hideBtn.parentElement.remove();
+            });
+        })
     </script>
 </body>
 </html>

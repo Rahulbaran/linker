@@ -75,6 +75,7 @@ h6 {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 2;
   inline-size: 100%;
   background-image: linear-gradient(
     45deg,
@@ -86,13 +87,13 @@ h6 {
     block: $base-padding * 1.5;
     inline: $base-padding * 2;
   }
-  box-shadow: 0 3px 3px transparentize($black-color, 0.9);
+  box-shadow: 0 4px 6px transparentize($black-color, 0.85);
   @include flex($align: center);
 
   .logo {
     text-decoration: none;
     font: {
-      size: $base-font-size * 2.25;
+      size: $base-font-size * 2;
       family: var(--font-stack-lora);
       weight: map-get($font-weights, bold);
       style: italic;
@@ -137,9 +138,61 @@ h6 {
   }
 }
 
-/* -------------------------------
+/* --------------------------------
+* MESSAGE STYLING
+-------------------------------- */
+.msg {
+  &--container {
+    position: absolute;
+    top: 4.1rem;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
+
+  &__block {
+    @include flex(center, center, $gap: $base-margin * 2);
+    padding: $base-padding * 0.8;
+    font-size: $base-font-size * 1.1;
+    font-family: var(--font-stack-abeezee);
+  }
+
+  &__hide--btn {
+    background-color: transparent;
+    border: none;
+    font-size: $base-font-size * 1.5;
+
+    &:hover {
+      opacity: 0.6;
+      cursor: pointer;
+    }
+  }
+}
+
+.info__msg {
+  &--block {
+    background-color: transparentize(lighten($blue-color, 37%), 0.2);
+    color: darken($blue-color, 25%);
+  }
+  &--hide--btn {
+    color: darken($blue-color, 25%);
+  }
+}
+
+.warn__msg {
+  &--block {
+    background-color: transparentize(lighten($red-color, 42%), 0.2);
+    color: darken($red-color, 25%);
+  }
+
+  &--hide--btn {
+    color: darken($red-color, 25%);
+  }
+}
+
+/* ---------------------------------
 *  MEDIA QUERIES 
----------------------------------*/
+--------------------------------- */
 @supports (scroll-behavior: smooth) {
   @media (prefers-reduced-motion) {
     html {
@@ -153,13 +206,17 @@ h6 {
   }
 }
 
-@media all and (max-width: 769px) {
+@media all and (max-width: 481px) {
   .header {
     padding-inline: $base-padding;
-
-    .navigation__bar {
-      gap: $base-margin;
-    }
+  }
+  .header .navigation__bar {
+    gap: $base-margin * 0.8;
+  }
+}
+@media all and (max-width: 769px) {
+  .header .navigation__bar {
+    gap: $base-margin * 1.2;
   }
 }
 

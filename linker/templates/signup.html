@@ -50,15 +50,24 @@
             <div class="form__group">
                 {{form.password.label}}
                 {% if form.password.errors %}
-                {{form.password(id="input__error")}}
+                <div class="password__input--field">
+                    {{form.password(id="input__error")}}
+                    <button class="password__toggle--btn" type="button" title="Show Password">
+                        <box-icon name='show' color='white'></box-icon>
+                    </button>
+                </div>
                 {% for error in form.password.errors %}
                 <span class="error__msg">{{error}}</span>
                 {% endfor %}
                 {% else %}
-                {{form.password(placeholder="enter password")}}
+                <div class="password__input--field">
+                    {{form.password(placeholder="enter password")}}
+                    <button class="password__toggle--btn" type="button" title="Show Password">
+                        <box-icon name='show' color='white'></box-icon>
+                    </button>
+                </div>
                 {% endif %}
             </div>
-
             {{form.recaptcha}}
             {{form.submit(class="btn")}}
         </form>
@@ -70,4 +79,22 @@
             </p>
         </div>
     </main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const $passwordField = document.querySelector(".password__input--field input");
+    const $togglePasswordBtn = document.querySelector(".password__toggle--btn box-icon");
+    
+    $togglePasswordBtn.addEventListener("click", function () {
+        if($passwordField.getAttribute("type") === "password") {
+            $passwordField.setAttribute("type", "text");
+            this.setAttribute("name", "hide");
+        }
+        else {
+            $passwordField.setAttribute("type", "password");
+            this.setAttribute("name", "show");
+        }
+    });
+</script>
 {% endblock %}

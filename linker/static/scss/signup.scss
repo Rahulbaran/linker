@@ -60,6 +60,27 @@
     }
   }
 
+  .password__input--field {
+    position: relative;
+
+    input {
+      width: 100%;
+    }
+  }
+
+  .password__toggle--btn {
+    position: absolute;
+    top: 0.6rem;
+    right: 8px;
+    background-color: transparent;
+    border: none;
+
+    &:hover box-icon {
+      opacity: 0.65;
+      cursor: pointer;
+    }
+  }
+
   [type="submit"] {
     font-family: var(--font-stack-lato);
     font-size: inherit;

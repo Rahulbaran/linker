@@ -52,11 +52,7 @@ class SignUpForm(FlaskForm):
 class LoginForm(FlaskForm):
     username = StringField(
         "Username",
-        validators=[
-            InputRequired(),
-            Length(min=5, max=100, message="username should be 5 to 100 characters long"),
-            Regexp(r"^\w{5, 100}$", message="username should only contain alphabats, numbers & underscores"),
-        ],
+        validators=[InputRequired(), Length(min=5, max=100, message="username should be 5 to 100 characters long")],
     )
     password = PasswordField(
         "Password",
