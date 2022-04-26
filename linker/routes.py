@@ -68,7 +68,7 @@ def links():
     return render_template("links.html", title="LINKS")
 
 
-@app.route("/account", methods=["GET", "PAST"])
+@app.route("/account", methods=["GET", "POST"])
 @login_required
 def account():
     return render_template("account.html", title="ACCOUNT")

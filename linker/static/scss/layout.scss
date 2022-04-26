@@ -69,6 +69,28 @@ h6 {
 }
 
 /* -------------------------------
+* SCROLL TOP BUTTON
+------------------------------- */
+.scroll--top--btn {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background-color: transparentize(darken($blue-color, 30%), 0.6);
+  border: none;
+  border-radius: 50%;
+  padding: $base-padding * 1.5 $base-padding * 1.75;
+  box-shadow: 0 0 4px transparentize($black-color, 0.8);
+  display: none;
+  transition: transform 250ms ease-in;
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-3px);
+    transition: transform 250ms ease-out;
+  }
+}
+
+/* -------------------------------
 * HEADER STYLING
 -------------------------------- */
 .header {
@@ -206,7 +228,7 @@ h6 {
   }
 }
 
-@media all and (max-width: 481px) {
+@media all and (max-width: 480px) {
   .header {
     padding-inline: $base-padding;
   }
@@ -214,7 +236,7 @@ h6 {
     gap: $base-margin * 0.8;
   }
 }
-@media all and (max-width: 769px) {
+@media all and (max-width: 768px) {
   .header .navigation__bar {
     gap: $base-margin * 1.2;
   }

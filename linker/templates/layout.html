@@ -22,6 +22,10 @@
     <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js" defer></script>
 </head>
 <body>
+    <button class="scroll--top--btn" type="button">
+        <box-icon type='solid' name='chevrons-up' color="white"></box-icon>
+    </button>
+
     <header class="header">
         <a href="{{url_for('home')}}" class="logo" title='Logo'>Linker</a>
 
@@ -83,12 +87,27 @@
     {% endblock %}
 
     <script>
+        // * Message Hide Buttons
         const $hideBtns = document.querySelectorAll(".msg__hide--btn");
         $hideBtns?.forEach(hideBtn => {
             hideBtn.addEventListener("click", () => {
                 hideBtn.parentElement.remove();
             });
-        })
+        });
+
+        // * Scroll To Top Button 
+        const $scrollTop = document.querySelector(".scroll--top--btn");
+
+        window.onscroll = () => {
+            (document.documentElement.scrollTop > 0 || document.body.scrollTop > 0) ? 
+            $scrollTop.style.display = "block" : 
+            $scrollTop.style.display = "none";
+        };
+
+        $scrollTop.addEventListener("click", () => {
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+        });
     </script>
 </body>
 </html>
