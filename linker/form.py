@@ -60,3 +60,33 @@ class LoginForm(FlaskForm):
     )
     remember = BooleanField("Remember Me")
     submit = SubmitField("Login")
+
+
+# LINKS FORM
+class LinksForm(FlaskForm):
+    portfolio = StringField(
+        "Portfolio",
+        validators=[
+            Length(min=10, max=50, message="portfolio link should be 10 to 50 characters long"),
+        ],
+    )
+    github = StringField(
+        "Github",
+        validators=[
+            InputRequired(),
+            Length(min=20, max=50, message="github profile link should be 20 to 50 characters long"),
+        ],
+    )
+    linkedin = StringField(
+        "Linkedin",
+        validators=[Length(min=20, max=100, message="linkedin profile link should be 20 to 100 characters long")],
+    )
+    codepen = StringField(
+        "Codepen",
+        validators=[Length(min=20, max=50, message="codepen profile link should be 20 to 50 characters long")],
+    )
+    twitter = StringField(
+        "Twitter",
+        validators=[Length(min=20, max=50, message="twitter profile link should be 20 to 50 characters long")],
+    )
+    submit = SubmitField("Add Links")

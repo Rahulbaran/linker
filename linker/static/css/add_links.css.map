@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "../scss/add_links.scss"
-    ],
-    "names": [],
-    "file": "add_links.css"
-}

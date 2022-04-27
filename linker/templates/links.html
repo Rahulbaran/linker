@@ -1,8 +1,104 @@
 {% extends 'layout.html' %}
 {% set active_page='links' %}
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{url_for('static', filename='css/add_links.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/links.css')}}">
 {% endblock %}
 
 {% block body %}
+<main class="form--container">
+<h3 class="form__heading">Links Form</h3>
+
+<form class="form" autocomplete="off" method="post" spellcheck="false">
+    {{form.hidden_tag()}}
+
+    <div class="form__group">
+        {{form.portfolio.label}}
+        {{form.portfolio(placeholder="portfolio url/link", class="link__field")}}
+    </div>
+
+    <div class="form__group">
+        {{form.github.label}}
+        {{form.github(placeholder="github profile link", class="link__field")}}
+    </div>
+
+    <div class="form__group">
+        {{form.linkedin.label}}
+        {{form.linkedin(placeholder="linkedin profile link", class="link__field")}}
+    </div>
+
+    <div class="form__group">
+        {{form.codepen.label}}
+        {{form.codepen(placeholder="codepen profile link", class="link__field")}}
+    </div>
+
+    <div class="form__group">
+        {{form.twitter.label}}
+        {{form.twitter(placeholder="twitter profile link", class="link__field")}}
+    </div>
+    
+    {{form.submit(class="btn")}}
+</form>
+
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+
+    /* ------------------------------
+    * Functionality to handle links Form 
+    ------------------------------ */
+    const $linksForm = document.querySelector(".form");
+    const $linkFields = document.querySelectorAll(".link__field");
+
+
+    const sendLinks = () => {
+        const promise = new Promise((resolve, reject) => {
+            const linksObj = {
+                portfolio: $linkFields[0].value.trim(),
+                github: $linkFields[1].value.trim(),
+                linkedin: $linkFields[2].value.trim(),
+                codepen: $linkFields[3].value.trim(),
+                twitter: $linkFields[4].value.trim()
+            };
+
+            const xhr = new XMLHttpRequest();
+            xhr.open("Post", "/links", true);
+            xhr.responseType = "json";
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.send(JSON.stringify(linksObj));
+
+            xhr.onload = () => {
+                if(xhr.status === 200 && xhr.response["status"] === 200) resolve(xhr.response)
+                else reject(xhr.response)
+            };
+            xhr.onerror = msg => reject(msg);
+        });
+        return promise;
+    };
+
+    $linksForm.addEventListener("submit", e => {
+        e.preventDefault();
+        sendLinks()
+        .then(res => {
+            const msgHtml = `<div class="msg--container"><div class="msg__block info__msg--block"><span>${res.msg}</span>
+                            <button class="msg__hide--btn info__msg--hide--btn">&Cross;</button></div></div>`;
+            document.body.insertAdjacentHTML("afterbegin", msgHtml);
+        })
+        .catch(rej => {
+            const msgHtml = `<div class="msg--container"><div class="msg__block warn__msg--block"><span>${rej.msg}</span>
+                            <button class="msg__hide--btn warn__msg--hide--btn">&Cross;</button></div></div>`;
+            document.body.insertAdjacentHTML("afterbegin", msgHtml);
+        });
+    });
+
+    /* ----------------------------------
+    * Functionality to hide messages
+    ---------------------------------- */
+    document.body.addEventListener("click", e => {
+        e.target.matches(".msg__hide--btn") ? e.target.parentElement.remove(): null;
+    });
+
+</script>
 {% endblock %}

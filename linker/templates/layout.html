@@ -99,7 +99,7 @@
         const $scrollTop = document.querySelector(".scroll--top--btn");
 
         window.onscroll = () => {
-            (document.documentElement.scrollTop > 0 || document.body.scrollTop > 0) ? 
+            (document.documentElement.scrollTop > 50 || document.body.scrollTop > 50) ? 
             $scrollTop.style.display = "block" : 
             $scrollTop.style.display = "none";
         };

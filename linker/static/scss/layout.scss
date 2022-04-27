@@ -73,8 +73,8 @@ h6 {
 ------------------------------- */
 .scroll--top--btn {
   position: fixed;
-  bottom: 15px;
-  right: 15px;
+  bottom: 1rem;
+  right: 1rem;
   background-color: transparentize(darken($blue-color, 30%), 0.6);
   border: none;
   border-radius: 50%;
@@ -166,7 +166,7 @@ h6 {
 .msg {
   &--container {
     position: absolute;
-    top: 4.1rem;
+    top: 4.06rem;
     left: 0;
     right: 0;
     z-index: 1;

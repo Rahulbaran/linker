@@ -52,6 +52,7 @@
       border-radius: $base-border-radius * 0.25;
       text-overflow: ellipsis;
       letter-spacing: 0.5px;
+      font-family: var(--font-stack-monospace);
 
       &:focus {
         border-color: lighten(adjust-hue($yellow-color, 30deg), 15%);
@@ -60,74 +61,17 @@
     }
   }
 
-  .password__input--field {
-    position: relative;
-
-    input {
-      width: 100%;
-    }
-  }
-
-  .password__toggle--btn {
-    position: absolute;
-    top: 0.6rem;
-    right: 8px;
-    background-color: transparent;
-    border: none;
-
-    &:hover box-icon {
-      opacity: 0.65;
-      cursor: pointer;
-    }
-  }
-
   [type="submit"] {
     font-family: var(--font-stack-lato);
     font-size: inherit;
-    margin-block-start: $base-margin;
+    margin-block-start: $base-margin * 2;
   }
-}
-
-.login__link--wrapper {
-  margin-block-start: $base-margin * 1.5;
-
-  p {
-    color: lighten(adjust-hue($yellow-color, 30deg), 40%);
-    font-size: $base-font-size * 1.05;
-    letter-spacing: 0.5px;
-  }
-
-  a {
-    font-family: var(--font-stack-abeezee);
-    text-decoration: none;
-    color: adjust-hue($yellow-color, 25deg);
-
-    &:hover {
-      text-decoration: underline 1px wavy currentColor;
-      text-underline-offset: 3px;
-    }
-  }
-}
-
-#input__error {
-  border-color: $red-color;
-  outline-color: $red-color;
-
-  &:hover {
-    outline-color: $red-color;
-  }
-}
-
-.error__msg {
-  color: lighten($red-color, 10%) !important;
-  font-size: $base-font-size * 0.8;
-  letter-spacing: 0.5px;
 }
 
 /* -------------------------------
 * MEDIA QUERIES
 -------------------------------- */
-@media all and (min-width: 481px) {
+@media all and (min-width: 769px) {
   body {
     align-items: flex-start;
     padding-block: {

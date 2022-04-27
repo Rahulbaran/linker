@@ -1,8 +1,8 @@
 from flask import render_template, url_for, redirect, abort, flash, request
 from flask_login import login_user, logout_user, login_required, current_user
-from . import app, db
-from .models import User
-from .form import SignUpForm, LoginForm
+from linker import app, db
+from linker.models import User, Link
+from linker.form import SignUpForm, LoginForm, LinksForm
 
 # ROUTES
 @app.route("/")
@@ -65,7 +65,39 @@ def logout():
 @app.route("/links", methods=["GET", "POST"])
 @login_required
 def links():
-    return render_template("links.html", title="LINKS")
+    form = LinksForm()
+    linksInDb = Link.query.get(current_user.id)
+    if request.method == "POST":
+        data = request.get_json()
+        try:
+            if not linksInDb:
+                linksObj = Link(
+                    portfolio=data.get("portfolio"),
+                    github=data.get("github"),
+                    linkedin=data.get("linkedin"),
+                    codepen=data.get("codepen"),
+                    twitter=data.get("twitter"),
+                    user_id=current_user.id,
+                )
+                db.session.add(linksObj)
+                db.session.commit()
+            else:
+                linksInDb.portfolio = data.get("portfolio")
+                linksInDb.github = data.get("github")
+                linksInDb.linkedin = data.get("linkedin")
+                linksInDb.codepen = data.get("codepen")
+                linksInDb.twitter = data.get("twitter")
+                db.session.commit()
+            return {"status": 200, "msg": "Links have been updated"}
+        except:
+            return {"status": 404, "msg": "Sorry, links were not saved"}
+    elif request.method == "GET":
+        form.portfolio.data = linksInDb.portfolio
+        form.github.data = linksInDb.github
+        form.linkedin.data = linksInDb.linkedin
+        form.codepen.data = linksInDb.codepen
+        form.twitter.data = linksInDb.twitter
+    return render_template("links.html", title="LINKS", form=form)
 
 
 @app.route("/account", methods=["GET", "POST"])
