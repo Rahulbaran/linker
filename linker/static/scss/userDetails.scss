@@ -1,0 +1,96 @@
+@import "partials/Variables.scss";
+@import "partials/Mixins.scss";
+
+.user {
+  &--container {
+    width: 93%;
+    max-width: 540px;
+    margin-inline: auto;
+    background-color: lighten(adjust-hue($blue-color, -40deg), 25%);
+    box-shadow: 0 0 20px lighten($black-color, 0.9);
+    padding: $base-padding * 3;
+    border-radius: $base-border-radius * 0.2;
+    @include flex(flex-start, center, $dir: column);
+  }
+
+  &__img--wrapper {
+    inline-size: 8rem;
+    border-radius: 50%;
+    margin-block-end: $base-margin * 2;
+
+    img {
+      width: 100%;
+      display: block;
+      border: 3px dashed darken($blue-color, 37%);
+      border-radius: inherit;
+    }
+  }
+
+  &__name,
+  &__info {
+    color: darken($blue-color, 37%);
+    font-family: var(--font-stack-abeezee);
+  }
+
+  &__info {
+    font-size: $base-font-size * 1.1;
+  }
+
+  &__links {
+    align-self: stretch;
+    margin-block-start: $base-margin * 3;
+    @include flex(flex-start, $dir: column, $gap: $base-margin * 0.6);
+
+    > a {
+      background-color: red;
+      padding: $base-padding * 1.02;
+      text-decoration: none;
+      border-radius: $base-border-radius;
+      color: $white-color;
+      font-weight: map-get($font-weights, medium);
+      letter-spacing: 0.5px;
+      transition: transform 200ms ease-in;
+      @include flex(center, center, $gap: $base-margin);
+
+      &:hover {
+        transform: scale(1.05);
+        transition: transform 400ms ease-out;
+      }
+
+      &:first-of-type {
+        background-color: #f04a21;
+      }
+
+      &:nth-of-type(2) {
+        background-color: darken(desaturate($blue-color, 80%), 40%);
+      }
+
+      &:nth-of-type(3) {
+        background-color: adjust-hue($blue-color, -15deg);
+      }
+
+      &:nth-of-type(4) {
+        background-color: darken(
+          desaturate(adjust-hue($blue-color, 10deg), 90%),
+          45%
+        );
+      }
+
+      &:last-of-type {
+        background-color: adjust-hue($blue-color, -30deg);
+      }
+    }
+  }
+}
+
+/* ---------------------------------
+*  MEDIA QUERIES 
+--------------------------------- */
+@media all and (min-width: 769px) {
+  body {
+    align-items: flex-start;
+    padding-block: {
+      start: $base-padding * 11;
+    }
+  }
+}

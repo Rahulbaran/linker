@@ -39,7 +39,7 @@ h6 {
 
 .btn {
   display: inline-block;
-  background-color: adjust-hue($yellow-color, 30deg);
+  background-color: lighten(adjust-hue($blue-color, -40deg), 15%);
   border-radius: $base-border-radius * 0.25;
   text-decoration: none;
   border: none;
@@ -120,7 +120,7 @@ h6 {
       weight: map-get($font-weights, bold);
       style: italic;
     }
-    color: lighten($yellow-color, 30%);
+    color: lighten(adjust-hue($blue-color, -40deg), 25%);
     text-shadow: 5px 5px 3px transparentize($black-color, 0.65);
     letter-spacing: 0.75px;
     line-height: $base-lh * 0.8;

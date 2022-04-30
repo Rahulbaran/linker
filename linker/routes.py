@@ -18,6 +18,16 @@ def contact():
     return render_template("contact.html", title="CONTACT")
 
 
+@app.route("/<username>")
+def userDetails(username):
+    user = User.query.filter_by(username=username).first()
+    if user:
+        user_links = Link.query.filter_by(user_id=user.id).first()
+        return render_template("userDetails.html", title=username, user=user, user_links=user_links)
+    else:
+        abort(404)
+
+
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     if current_user.is_authenticated:
@@ -91,7 +101,7 @@ def links():
             return {"status": 200, "msg": "Links have been updated"}
         except:
             return {"status": 404, "msg": "Sorry, links were not saved"}
-    elif request.method == "GET":
+    elif request.method == "GET" and linksInDb:
         form.portfolio.data = linksInDb.portfolio
         form.github.data = linksInDb.github
         form.linkedin.data = linksInDb.linkedin

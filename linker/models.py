@@ -16,6 +16,7 @@ class User(db.Model):
     email = db.Column(db.String(255), nullable=False, unique=True)
     password = db.Column(db.String(255), nullable=False)
     avatar = db.Column(db.String(50), nullable=False, default="default.png")
+    about_me = db.Column(db.Text, nullable=False, default="A Frontend Web Developer")
     joined_on = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     urls = db.relationship("Link", backref="user_links", lazy="dynamic")
 

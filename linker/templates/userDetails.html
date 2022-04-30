@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/userDetails.css')}}">
+{% endblock %}
+
+{% block body %}
+    <main class="user--container">
+        <div class="user__img--wrapper">
+            <img src="{{url_for('static', filename='images/'+user.avatar)}}" alt="User Avatar">
+        </div>
+
+        <h2 class="user__name">{{user.fullname}}</h2>
+        <p class="user__info">{{user.about_me}}</p>
+
+        <div class="user__links">
+            {% if user_links.portfolio %}
+            <a href="{{user_links.portfolio}}" target="_blank" title="Portfolio Website">
+                <box-icon type='solid' name='user-detail' color="white"></box-icon>
+                <span>Portfolio</span>
+            </a>
+            {% endif %}
+
+            {% if user_links.github %}
+            <a href="{{user_links.github}}" target="_blank" title="Github Profile">
+                <box-icon type='logo' name='github' color="white"></box-icon>
+                <span>Github</span>
+            </a>
+            {% endif %}
+
+            {% if user_links.linkedin %}
+            <a href="{{user_links.linkedin}}" target="_blank" title="Linkedin Profile">
+                <box-icon type='logo' name='linkedin-square' color="white"></box-icon>
+                <span>Linkedin</span>
+            </a>
+            {% endif %}
+
+            {% if user_links.codepen %}
+            <a href="{{user_links.codepen}}" target="_blank" title="Codepen Profile">
+                <box-icon type='logo' name='codepen' color="white"></box-icon>
+                <span>Codepen</span>
+            </a>
+            {% endif %}
+
+            {% if user_links.twitter %}
+            <a href="{{user_links.twitter}}" target="_blank" title="Twitter Profile">
+                <box-icon type='logo' name='twitter' color="white"></box-icon>
+                <span>Twitter</span>
+            </a>
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}
