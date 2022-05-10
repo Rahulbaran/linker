@@ -17,7 +17,7 @@
   }
 
   &__page--heading {
-    color: adjust-hue($yellow-color, 25deg);
+    color: lighten(adjust-hue($blue-color, -40deg), 15%);
     margin-block-end: $base-margin * 4;
     font-size: $base-font-size * 1.75;
     background: linear-gradient(currentColor, currentColor) bottom 0 left 0/4.3rem

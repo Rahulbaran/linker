@@ -18,7 +18,7 @@ class User(db.Model):
     avatar = db.Column(db.String(50), nullable=False, default="default.png")
     about_me = db.Column(db.Text, nullable=False, default="A Frontend Web Developer")
     joined_on = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    urls = db.relationship("Link", backref="user_links", lazy="dynamic")
+    urls = db.relationship("Link", backref="user_links", cascade="all, delete", lazy="dynamic")
 
     # Methods for working with flask-login package
     def is_active(self):

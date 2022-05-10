@@ -6,7 +6,7 @@ html {
   box-sizing: border-box;
   min-block-size: 100vh;
   scrollbar-width: thin;
-  scrollbar-color: darken(adjust-hue($yellow-color, 30deg), 10%) $white-color;
+  scrollbar-color: lighten(adjust-hue($blue-color, -40deg), 10%) $white-color;
 }
 
 *,
@@ -34,15 +34,15 @@ html {
   }
 
   &-thumb {
-    background-color: darken(adjust-hue($yellow-color, 30deg), 10%);
+    background-color: lighten(adjust-hue($blue-color, -40deg), 10%);
     border-radius: $base-border-radius * 0.15;
 
     &:hover {
-      background-color: darken(adjust-hue($yellow-color, 30deg), 15%);
+      background-color: darken(adjust-hue($blue-color, -40deg), 10%);
     }
 
     &:active {
-      background-color: darken(adjust-hue($yellow-color, 30deg), 25%);
+      background-color: darken(adjust-hue($blue-color, -40deg), 5%);
     }
   }
 }

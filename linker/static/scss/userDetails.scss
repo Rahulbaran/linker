@@ -6,7 +6,7 @@
     width: 93%;
     max-width: 540px;
     margin-inline: auto;
-    background-color: lighten(adjust-hue($blue-color, -40deg), 25%);
+    background-color: lighten(adjust-hue($blue-color, -40deg), 35%);
     box-shadow: 0 0 20px lighten($black-color, 0.9);
     padding: $base-padding * 3;
     border-radius: $base-border-radius * 0.2;
@@ -42,7 +42,7 @@
     @include flex(flex-start, $dir: column, $gap: $base-margin * 0.6);
 
     > a {
-      background-color: red;
+      background-color: $red-color;
       padding: $base-padding * 1.02;
       text-decoration: none;
       border-radius: $base-border-radius;
@@ -58,7 +58,7 @@
       }
 
       &:first-of-type {
-        background-color: #f04a21;
+        background-color: desaturate(adjust-hue($red-color, 20deg), 15%);
       }
 
       &:nth-of-type(2) {

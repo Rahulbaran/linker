@@ -23,8 +23,8 @@
     &__heading {
       background-image: linear-gradient(
         to top right,
-        adjust-hue($yellow-color, 25deg),
-        lighten(adjust-hue($yellow-color, 25deg), 20%)
+        (adjust-hue($blue-color, -50deg)),
+        lighten(adjust-hue($blue-color, -40deg), 5%)
       );
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
