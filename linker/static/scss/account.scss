@@ -1,0 +1,63 @@
+@import "partials/Variables.scss";
+@import "partials/Mixins.scss";
+
+.profile {
+  &--container {
+    width: 93%;
+    max-width: 540px;
+    margin-inline: auto;
+    background-color: lighten(adjust-hue($blue-color, -40deg), 35%);
+    box-shadow: 0 0 20px lighten($black-color, 0.9);
+    padding: $base-padding * 3;
+    border-radius: $base-border-radius * 0.2;
+    @include flex(flex-start, center, $dir: column);
+  }
+
+  &__img--wrapper {
+    inline-size: 8rem;
+    border-radius: 50%;
+    margin-block-end: $base-margin * 4;
+
+    img {
+      width: 100%;
+      display: block;
+      border: 3px dashed darken($blue-color, 37%);
+      border-radius: inherit;
+    }
+  }
+
+  &__details--wrapper {
+    min-width: 100%;
+    margin-block-end: $base-margin * 4;
+    align-self: flex-start;
+
+    h3 {
+      font-family: var(--font-stack-abeezee);
+    }
+  }
+
+  &__detail {
+    @include flex($gap: $base-margin * 2);
+    margin-block-end: $base-margin * 0.5;
+
+    span {
+      font-size: $base-font-size * 1.05;
+    }
+  }
+
+  &__edit--btn {
+    align-self: flex-start;
+  }
+}
+
+/* ------------------------------------
+*  MEDIA QUERIES 
+------------------------------------ */
+@media all and (min-width: 769px) {
+  body {
+    align-items: flex-start;
+    padding-block: {
+      start: $base-padding * 12;
+    }
+  }
+}

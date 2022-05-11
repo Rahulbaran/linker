@@ -5,4 +5,38 @@
 {% endblock %}
 
 {% block body %}
+<main class="profile--container">
+    <div class="profile__img--wrapper">
+        <img src="{{url_for('static', filename='images/'+current_user.avatar)}}" alt="Profile Picture">
+    </div>
+
+    <div class="profile__details--wrapper">
+        <div class="profile__detail">
+            <h3>Fullname -</h3>
+            <span>{{current_user.fullname}}</span>
+        </div>
+
+        <div class="profile__detail">
+            <h3>Username -</h3>
+            <span>{{current_user.username}}</span>
+        </div>
+
+        <div class="profile__detail">
+            <h3>Email -</h3>
+            <span>{{current_user.email}}</span>
+        </div>
+
+        <div class="profile__detail">
+            <h3>Joined On -</h3>
+            <span>{{current_user.joined_on.strftime('%d/%m/%Y')}}</span>
+        </div>
+
+        <div class="profile__about">
+            <h3>About Me</h3>
+            <span>{{current_user.about_me}}</span>
+        </div>
+    </div>
+
+    <a href="#" class="btn profile__edit--btn">Update Profile</a>
+</main>
 {% endblock %}

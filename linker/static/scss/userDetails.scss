@@ -57,26 +57,26 @@
         transition: transform 400ms ease-out;
       }
 
-      &:first-of-type {
+      &.portfolio__link {
         background-color: desaturate(adjust-hue($red-color, 20deg), 15%);
       }
 
-      &:nth-of-type(2) {
+      &.github__link {
         background-color: darken(desaturate($blue-color, 80%), 40%);
       }
 
-      &:nth-of-type(3) {
+      &.linkedin__link {
         background-color: adjust-hue($blue-color, -15deg);
       }
 
-      &:nth-of-type(4) {
+      &.codepen__link {
         background-color: darken(
           desaturate(adjust-hue($blue-color, 10deg), 90%),
           45%
         );
       }
 
-      &:last-of-type {
+      &.twitter__link {
         background-color: adjust-hue($blue-color, -30deg);
       }
     }

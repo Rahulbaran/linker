@@ -85,7 +85,7 @@
   a {
     font-family: var(--font-stack-abeezee);
     text-decoration: none;
-    color: adjust-hue($yellow-color, 25deg);
+    color: lighten(adjust-hue($blue-color, -40deg), 15%);
 
     &:hover {
       text-decoration: underline 1px wavy currentColor;
