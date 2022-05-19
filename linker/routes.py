@@ -2,7 +2,7 @@ from flask import render_template, url_for, redirect, abort, flash, request
 from flask_login import login_user, logout_user, login_required, current_user
 from linker import app, db
 from linker.models import User, Link
-from linker.form import SignUpForm, LoginForm, LinksForm
+from linker.form import SignUpForm, LoginForm, LinksForm, UpdateProfileForm
 
 # ROUTES
 @app.route("/")
@@ -114,3 +114,15 @@ def links():
 @login_required
 def account():
     return render_template("account.html", title="ACCOUNT")
+
+
+@app.route("/update_profile", methods=["GET", "POST"])
+@login_required
+def updateProfile():
+    form = UpdateProfileForm()
+    if request.method == "GET":
+        form.fullname.data = current_user.fullname
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+        form.about.data = current_user.about_me
+    return render_template("updateProfile.html", title="Update Profile", form=form)

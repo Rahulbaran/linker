@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm, RecaptchaField
-from wtforms.fields import EmailField, StringField, PasswordField, SubmitField, BooleanField
-from wtforms.validators import Length, InputRequired, ValidationError, Regexp
+from flask_wtf.file import FileAllowed, FileField
+from wtforms.fields import EmailField, StringField, PasswordField, SubmitField, BooleanField, TextAreaField
+from wtforms.validators import Length, InputRequired, ValidationError
 from .models import User
 
 # SIGNUP FORM
@@ -90,3 +91,39 @@ class LinksForm(FlaskForm):
         validators=[Length(min=20, max=50, message="twitter profile link should be 20 to 50 characters long")],
     )
     submit = SubmitField("Add Links")
+
+
+# UPDATE PROFILE FORM
+class UpdateProfileForm(FlaskForm):
+    fullname = StringField(
+        "Fullname",
+        validators=[InputRequired(), Length(min=5, max=255, message="name should be 5 to 255 characters long")],
+    )
+    username = StringField(
+        "Username",
+        validators=[
+            InputRequired(),
+            Length(min=5, max=100, message="username should be 5 to 100 characters long"),
+        ],
+    )
+    email = EmailField(
+        "Email",
+        validators=[InputRequired(), Length(min=10, max=255, message="email should be 10 to 255 characters long")],
+    )
+    about = TextAreaField("About Me", validators=[InputRequired()])
+    avatar = FileField(
+        "Upload Avatar",
+        validators=[
+            FileAllowed(
+                ["jpeg", "jpg", "gif", "png", "webP", "svg"],
+                message="image with extension jpeg/jpg/gif/svg/png/webP is only allowd",
+            )
+        ],
+    )
+    submit = SubmitField("Update")
+
+
+# # UPDATE AVATAR FORM
+# class UpdateAvatarForm(FlaskForm):
+#     avatar = FileField("Profile Picture", validators=[FileAllowed()])
+#     submit = SubmitField("Upload")
